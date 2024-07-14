@@ -14,9 +14,8 @@ import { tableColumns } from "./mrtTableColumns";
 
 const Example = () => {
   const theme = useTheme();
-  const gridId = "demGrid_1";
+  const gridId = "demGrid_1"; // Wrap the MRT table in a component with Id
   const columns = useMemo<MRT_ColumnDef<TableData>[]>(() => tableColumns, []);
-
   const [memoMode, setMemoMode] = useState<MemoModeType>("rows");
   const [rowSelectionState, setRowSelectionState] = useState<MRT_RowSelectionState>({});
   const [columnVisibility, setColumnVisibility] = useState<MRT_VisibilityState>({});
@@ -38,14 +37,14 @@ const Example = () => {
       grouping: ["gender", "state"],
       pagination: { pageIndex: 0, pageSize: 100 },
     },
-    onRowSelectionChange: setRowSelectionState,
     state: {
       rowSelection: rowSelectionState,
       columnVisibility: columnVisibility,
     },
+    onRowSelectionChange: setRowSelectionState,
+    onColumnVisibilityChange: handleColumnVisibilityChange,
     muiSelectCheckboxProps: ({ row }) =>
       customMuiSelectCheckboxProps_for_useRowSelectionWorkaround({ row }),
-    onColumnVisibilityChange: handleColumnVisibilityChange,
   });
 
   /**
