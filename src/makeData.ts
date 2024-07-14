@@ -1,4 +1,4 @@
-export type Person = {
+export type TableData = {
   firstName: string;
   lastName: string;
   age: number;
@@ -34,7 +34,7 @@ export type Person = {
   favoriteDreamRetirement: string;
 };
 
-export const data: Person[] = [
+export const data: TableData[] = [
   {
     firstName: "Danika",
     lastName: "Rodriguez",
