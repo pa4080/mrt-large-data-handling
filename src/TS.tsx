@@ -27,148 +27,12 @@ import {
   useTheme,
 } from "@mui/material";
 import { customMuiSelectCheckboxProps_for_useRowSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useRowSelectionWorkaround } from "./hooks/useRowSelectionWorkaround";
+import { tableColumns } from "./mrtTableColumns";
 
 const Example = () => {
   const theme = useTheme();
   const gridId = "demGrid_1";
-
-  const columns = useMemo<MRT_ColumnDef<TableData>[]>(
-    () => [
-      {
-        header: "First Name",
-        accessorKey: "firstName",
-      },
-      {
-        header: "Last Name",
-        accessorKey: "lastName",
-      },
-      {
-        header: "Age",
-        accessorKey: "age",
-      },
-      {
-        header: "Gender",
-        accessorKey: "gender",
-      },
-      {
-        header: "State",
-        accessorKey: "state",
-      },
-      {
-        header: "Salary",
-        accessorKey: "salary",
-      },
-      {
-        header: "Email",
-        accessorKey: "email",
-      },
-      {
-        header: "Phone Number",
-        accessorKey: "phoneNumber",
-      },
-      {
-        header: "Address",
-        accessorKey: "address",
-      },
-      {
-        header: "Occupation",
-        accessorKey: "occupation",
-      },
-      {
-        header: "Hobbies",
-        accessorKey: "hobbies",
-      },
-      {
-        header: "Education",
-        accessorKey: "education",
-      },
-      {
-        header: "Favorite Color",
-        accessorKey: "favoriteColor",
-      },
-      {
-        header: "Favorite Food",
-        accessorKey: "favoriteFood",
-      },
-      {
-        header: "Favorite Movie",
-        accessorKey: "favoriteMovie",
-      },
-      {
-        header: "Favorite Book",
-        accessorKey: "favoriteBook",
-      },
-      {
-        header: "Favorite Song",
-        accessorKey: "favoriteSong",
-      },
-      {
-        header: "Favorite Vacation Spot",
-        accessorKey: "favoriteVacationSpot",
-      },
-      {
-        header: "Favorite Pet",
-        accessorKey: "favoritePet",
-      },
-      {
-        header: "Favorite Sport",
-        accessorKey: "favoriteSport",
-      },
-      {
-        header: "Favorite Number",
-        accessorKey: "favoriteNumber",
-      },
-      {
-        header: "Favorite Quote",
-        accessorKey: "favoriteQuote",
-      },
-      {
-        header: "Favorite Memory",
-        accessorKey: "favoriteMemory",
-      },
-      {
-        header: "Favorite Inspirational Quote",
-        accessorKey: "favoriteInspirationalQuote",
-      },
-      {
-        header: "Favorite Life Goal",
-        accessorKey: "favoriteLifeGoal",
-      },
-      {
-        header: "Favorite Dream Vacation",
-        accessorKey: "favoriteDreamVacation",
-      },
-      {
-        header: "Favorite Dream Car",
-        accessorKey: "favoriteDreamCar",
-      },
-      {
-        header: "Favorite Dream Home",
-        accessorKey: "favoriteDreamHome",
-      },
-      {
-        header: "Favorite Dream Partner",
-        accessorKey: "favoriteDreamPartner",
-      },
-      {
-        header: "Favorite Dream Holiday",
-        accessorKey: "favoriteDreamHoliday",
-      },
-      {
-        header: "Favorite Dream Job",
-        accessorKey: "favoriteDreamJob",
-      },
-      {
-        header: "Favorite Dream Travel Style",
-        accessorKey: "favoriteDreamTravelStyle",
-      },
-      {
-        header: "Favorite Dream Retirement",
-        accessorKey: "favoriteDreamRetirement",
-      },
-    ],
-    []
-  );
+  const columns = useMemo<MRT_ColumnDef<TableData>[]>(() => tableColumns, []);
 
   const [memoMode, setMemoMode] = useState<MemoModeType>("rows");
   const [rowSelectionState, setRowSelectionState] = useState<MRT_RowSelectionState>({});
@@ -244,7 +108,6 @@ const Example = () => {
     [memoMode, theme.palette.background.paper]
   );
 
-
   /**
    * Generate the MRT table instance
    */
@@ -283,7 +146,7 @@ const Example = () => {
   useRowSelectionWorkaround({
     isEnabled: memoMode === "rows" || memoMode === "table-body",
     gridId,
-    rowSelectionState: { ...rowSelectionState }, // trigger re-render
+    rowSelectionState: { ...rowSelectionState }, // use the spread operator to trigger re-render
     colorPathChecked: theme.palette.primary.main, // theme.palette.action.active,
     colorPathBlank: theme.palette.action.active, // theme.palette.action.disabled,
     rowsGroupedRowModel: table.getGroupedRowModel() as MRT_RowModel<TableData>
