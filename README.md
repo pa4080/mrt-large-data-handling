@@ -1,4 +1,4 @@
-# MRT useRowSelectionWorkaround()
+# MRT useMrtMemoModeRowsSelectionWorkaround()
 
 ## Task
 
@@ -6,18 +6,18 @@ We needed a fast row selection feature for our table using MRT with 50-100 rows 
 
 ## Solution
 
-We discovered that using [`rows` MRT's memo mode](https://www.material-react-table.com/docs/guides/memoization#memo-mode) allows for efficient background processing, but it doesn't update the UI. To address this, we implemented custom JavaScript on top of React, MUI, and MRT to dynamically update the UI. This led to the creation of the [useRowSelectionWorkaround() hook](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/hooks/useRowSelectionWorkaround.ts) and its accompanying functions.
+We discovered that using [`rows` MRT's memo mode](https://www.material-react-table.com/docs/guides/memoization#memo-mode) allows for efficient background processing, but it doesn't update the UI. To address this, we implemented custom JavaScript on top of React, MUI, and MRT to dynamically update the UI. This led to the creation of the [useMrtMemoModeRowsSelectionWorkaround() hook](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/hooks/useMrtMemoModeRowsSelectionWorkaround.ts) and its accompanying functions.
 
 ## Conclusion
 
-The [useRowSelectionWorkaround() hook](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/hooks/useRowSelectionWorkaround.ts) effectively handles row selection in `memoMode: 'rows'`, supports group row expansion, group selection in multi-level column group mode, and provides workarounds for showing or hiding columns in this memo mode.
+The [useMrtMemoModeRowsSelectionWorkaround() hook](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/hooks/useMrtMemoModeRowsSelectionWorkaround.ts) effectively handles row selection in `memoMode: 'rows'`, supports group row expansion, group selection in multi-level column group mode, and provides workarounds for showing or hiding columns in this memo mode.
 
 
 ## Resourcer
 
-- The hook: [src/hooks/**useRowSelectionWorkaround**](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/hooks/useRowSelectionWorkaround.ts)
-- An example of usage: [src/**MinimalExample**.tsx](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/MinimalExample.tsx)
-- A bit extended exampple: [src/**ExtendedExample**.tsx](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/TS.tsx)
+- The hook: [src/hooks/**useMrtMemoModeRowsSelectionWorkaround**](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/hooks/useMrtMemoModeRowsSelectionWorkaround.ts)
+- An example of usage: [src/**Minimal example**.tsx](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/ExampleMinimal.tsx)
+- A bit extended exampple: [src/**Extended example**.tsx](https://github.com/pa4080/mrt-large-data-handling/blob/master/src/ExampleExtended.tsx)
 - **CodeSandbox**: [pa4080/**mrt-large-data-handling**](https://codesandbox.io/p/github/pa4080/mrt-large-data-handling/master)
 
 

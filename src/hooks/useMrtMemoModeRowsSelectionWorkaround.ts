@@ -4,7 +4,7 @@ import { useEffect } from "react";
 /**
  * This is the hook's interface
  */
-interface UseRowSelectionWorkaroundProps<TableData extends MRT_RowData> {
+interface useMrtMemoModeRowsSelectionWorkaroundProps<TableData extends MRT_RowData> {
 	gridId: string;
 	rowSelectionState: MRT_RowSelectionState;
 	isEnabled: boolean;
@@ -17,7 +17,7 @@ interface UseRowSelectionWorkaroundProps<TableData extends MRT_RowData> {
 /**
  * This is the actial hook, it must be placed after the MRT table generation
  */
-export function useRowSelectionWorkaround<TableData extends MRT_RowData>({
+export function useMrtMemoModeRowsSelectionWorkaround<TableData extends MRT_RowData>({
 	gridId,
 	rowSelectionState,
 	isEnabled,
@@ -25,7 +25,7 @@ export function useRowSelectionWorkaround<TableData extends MRT_RowData>({
 	selectedRowClassName = 'Mui-selected',
 	colorPathChecked = '#0B91FA',
 	colorPathBlank = '#4c4e6499',
-}: UseRowSelectionWorkaroundProps<TableData>) {
+}: useMrtMemoModeRowsSelectionWorkaroundProps<TableData>) {
 	const svgPath_SemiChecked = `<path style="color:${colorPathChecked};" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z" />`;
 	const svgPath_Checked = `<path style="color:${colorPathChecked};" d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />`;
 	const svgPath_Blank = `<path style="color:${colorPathBlank};"  d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />`;
@@ -178,7 +178,7 @@ export function useRowSelectionWorkaround<TableData extends MRT_RowData>({
 				}
 			});
 		} catch (error) {
-			console.error('Something went wrong with useRowSelectionWorkaround(): ', error);
+			console.error('Something went wrong with useMrtMemoModeRowsSelectionWorkaround(): ', error);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [gridId, isEnabled, rowsGroupedRowModel, rowSelectionState]);
@@ -187,10 +187,16 @@ export function useRowSelectionWorkaround<TableData extends MRT_RowData>({
 /**
  * This data is used within the hooh whick does the visual selection
  */
-export function customMuiSelectCheckboxProps_for_useRowSelectionWorkaround<TableData extends MRT_RowData>({ row }: { row: MRT_Row<TableData>; }) {
+export function customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround<
+	TableData extends MRT_RowData
+>({
+	row
+}: {
+	row: MRT_Row<TableData>;
+}) {
 	return {
 		// id: is will become HTML id for input[type="checkbox"], but we re using the "data-row-id" for now...
-		// We are using this "data-row-id" for the row selection within the hook 'useRowSelectionWorkaround()'
+		// We are using this "data-row-id" for the row selection within the hook 'useMrtMemoModeRowsSelectionWorkaround()'
 		id: String(row.id),
 		'data-row-id': row.groupingColumnId
 			? row.parentId

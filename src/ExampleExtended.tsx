@@ -2,6 +2,7 @@ import { ChangeEvent, MouseEvent, useCallback, useMemo, useState } from "react";
 import {
   getMRT_RowSelectionHandler,
   MaterialReactTable,
+  MRT_ExpandedState,
   MRT_Row,
   MRT_RowModel,
   MRT_RowSelectionState,
@@ -26,7 +27,7 @@ import {
   Theme,
   useTheme,
 } from "@mui/material";
-import { customMuiSelectCheckboxProps_for_useRowSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useRowSelectionWorkaround } from "./hooks/useRowSelectionWorkaround";
+import { customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useMrtMemoModeRowsSelectionWorkaround } from "./hooks/useMrtMemoModeRowsSelectionWorkaround";
 import { tableColumns } from "./mrtTableColumns";
 
 const Example = () => {
@@ -119,7 +120,7 @@ const Example = () => {
     enableRowSelection: true,
     memoMode,
     initialState: {
-      grouping: ["gender", "state"],
+      grouping: ["state"],
       pagination: { pageIndex: 0, pageSize: 100 },
     },
     onRowSelectionChange: setRowSelectionState,
@@ -128,7 +129,7 @@ const Example = () => {
       columnVisibility: columnVisibility,
     },
     muiSelectCheckboxProps: ({ row }) =>
-      customMuiSelectCheckboxProps_for_useRowSelectionWorkaround({ row }),
+      customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround({ row }),
     muiTableContainerProps: ({ table }) => customMuiTableContainer({ table }),
     muiTableBodyRowProps: ({ isDetailPanel, row, staticRowIndex, table }) =>
       customMuiTableBodyRowProps({
@@ -143,7 +144,7 @@ const Example = () => {
   /**
    * This is the hook whick does the visual selection
    */
-  useRowSelectionWorkaround({
+  useMrtMemoModeRowsSelectionWorkaround({
     isEnabled: memoMode === "rows" || memoMode === "table-body",
     gridId,
     rowSelectionState: { ...rowSelectionState }, // use the spread operator to trigger re-render

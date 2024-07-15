@@ -9,7 +9,7 @@ import {
 } from "material-react-table";
 import { data, type TableData } from "./makeData";
 import { Box, useTheme } from "@mui/material";
-import { customMuiSelectCheckboxProps_for_useRowSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useRowSelectionWorkaround } from "./hooks/useRowSelectionWorkaround";
+import { customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useMrtMemoModeRowsSelectionWorkaround } from "./hooks/useMrtMemoModeRowsSelectionWorkaround";
 import { tableColumns } from "./mrtTableColumns";
 
 const Example = () => {
@@ -33,10 +33,6 @@ const Example = () => {
     enableGrouping: true,
     enableRowSelection: true,
     memoMode,
-    initialState: {
-      grouping: ["gender", "state"],
-      pagination: { pageIndex: 0, pageSize: 100 },
-    },
     state: {
       rowSelection: rowSelectionState,
       columnVisibility: columnVisibility,
@@ -44,13 +40,13 @@ const Example = () => {
     onRowSelectionChange: setRowSelectionState,
     onColumnVisibilityChange: handleColumnVisibilityChange,
     muiSelectCheckboxProps: ({ row }) =>
-      customMuiSelectCheckboxProps_for_useRowSelectionWorkaround({ row }),
+      customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround({ row }),
   });
 
   /**
    * This is the hook whick does the visual selection
    */
-  useRowSelectionWorkaround({
+  useMrtMemoModeRowsSelectionWorkaround({
     isEnabled: memoMode === "rows" || memoMode === "table-body",
     gridId,
     rowSelectionState: { ...rowSelectionState }, // use the spread operator to trigger re-render
