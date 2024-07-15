@@ -9,7 +9,7 @@ import {
 } from "material-react-table";
 import { data, type TableData } from "./makeData";
 import { Box, useTheme } from "@mui/material";
-import { customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useMrtMemoModeRowsSelectionWorkaround } from "./hooks/useMrtMemoModeRowsSelectionWorkaround";
+import { generateDomDataFor_useMrtMemoModeRowsSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useMrtMemoModeRowsSelectionWorkaround } from "./hooks/useMrtMemoModeRowsSelectionWorkaround";
 import { tableColumns } from "./mrtTableColumns";
 
 const Example = () => {
@@ -40,7 +40,7 @@ const Example = () => {
     onRowSelectionChange: setRowSelectionState,
     onColumnVisibilityChange: handleColumnVisibilityChange,
     muiSelectCheckboxProps: ({ row }) =>
-      customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround({ row }),
+      generateDomDataFor_useMrtMemoModeRowsSelectionWorkaround({ row }),
   });
 
   /**

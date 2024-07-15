@@ -15,7 +15,7 @@ interface useMrtMemoModeRowsSelectionWorkaroundProps<TableData extends MRT_RowDa
 }
 
 /**
- * This is the actial hook, it must be placed after the MRT table generation
+ * This is the actual hook, it must be placed after the MRT table generation
  */
 export function useMrtMemoModeRowsSelectionWorkaround<TableData extends MRT_RowData>({
 	gridId,
@@ -187,7 +187,7 @@ export function useMrtMemoModeRowsSelectionWorkaround<TableData extends MRT_RowD
 /**
  * This data is used within the hooh whick does the visual selection
  */
-export function customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround<
+export function generateDomDataFor_useMrtMemoModeRowsSelectionWorkaround<
 	TableData extends MRT_RowData
 >({
 	row
@@ -206,7 +206,7 @@ export function customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWork
 		'data-row-can-expand': row.getCanExpand(),
 		'data-row-has-parent': row.parentId ? 'true' : 'false'
 	};
-};
+}
 
 /**
  * This is a workaround, which allow us to rerender the table,
@@ -231,9 +231,9 @@ export const forceTableRerender = ({
 };
 
 /**
- * This is the scond part of the table re-render
+ * This is the second part of the table re-render
  * workaround. You may need to implement your own
- * handleColumnVisibilityChange whitin your component.
+ * handleColumnVisibilityChange whiten your grid components.
  * > const [columnVisibility, setColumnVisibility] = useState<MRT_VisibilityState>({});
  */
 export const handleColumnVisibilityChangeGenerator = ({

@@ -27,7 +27,7 @@ import {
   Theme,
   useTheme,
 } from "@mui/material";
-import { customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useMrtMemoModeRowsSelectionWorkaround } from "./hooks/useMrtMemoModeRowsSelectionWorkaround";
+import { generateDomDataFor_useMrtMemoModeRowsSelectionWorkaround, handleColumnVisibilityChangeGenerator, MemoModeType, useMrtMemoModeRowsSelectionWorkaround } from "./hooks/useMrtMemoModeRowsSelectionWorkaround";
 import { tableColumns } from "./mrtTableColumns";
 
 const Example = () => {
@@ -129,7 +129,7 @@ const Example = () => {
       columnVisibility: columnVisibility,
     },
     muiSelectCheckboxProps: ({ row }) =>
-      customMuiSelectCheckboxProps_for_useMrtMemoModeRowsSelectionWorkaround({ row }),
+      generateDomDataFor_useMrtMemoModeRowsSelectionWorkaround({ row }),
     muiTableContainerProps: ({ table }) => customMuiTableContainer({ table }),
     muiTableBodyRowProps: ({ isDetailPanel, row, staticRowIndex, table }) =>
       customMuiTableBodyRowProps({
