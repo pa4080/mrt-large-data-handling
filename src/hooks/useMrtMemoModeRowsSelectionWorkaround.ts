@@ -6,7 +6,8 @@ import { useEffect } from "react";
  */
 interface useMrtMemoModeRowsSelectionWorkaroundProps<TableData extends MRT_RowData> {
 	gridId: string;
-	rowSelectionState: MRT_RowSelectionState;
+	rowSelectionState: MRT_RowSelectionState; // pass a copy to this prop { ...rowSelectionState }
+	setRowSelectionState: (newState: MRT_RowSelectionState) => void;
 	isEnabled: boolean;
 	rowsGroupedRowModel: MRT_RowModel<TableData>;
 	selectedRowClassName?: string;
@@ -20,6 +21,7 @@ interface useMrtMemoModeRowsSelectionWorkaroundProps<TableData extends MRT_RowDa
 export function useMrtMemoModeRowsSelectionWorkaround<TableData extends MRT_RowData>({
 	gridId,
 	rowSelectionState,
+	setRowSelectionState,
 	isEnabled,
 	rowsGroupedRowModel,
 	selectedRowClassName = 'Mui-selected',
@@ -146,6 +148,12 @@ export function useMrtMemoModeRowsSelectionWorkaround<TableData extends MRT_RowD
 			 * Deal with the checkboxes of the Groups,
 			 * Find the groups within rowsGroupedRowModel and iterate over them.
 			 */
+
+			// Handle remove empty groups from the state
+			let shouldUpdateTheState = false;
+			// const newRowSelectionState = { ...rowSelectionState }; // Wea are apping a copy of the state to the hook
+
+			// Process the groups
 			groupRows?.forEach(groupRowData => {
 				const groupLeafRows = groupRowData.getLeafRows();
 				const isWholeGrSelected = groupLeafRows.every(leafRow => leafRow.id in rowSelectionState);
@@ -176,7 +184,18 @@ export function useMrtMemoModeRowsSelectionWorkaround<TableData extends MRT_RowD
 					rowDom.classList.remove(selectedRowClassName);
 					svgCheck.innerHTML = svgPath_Blank;
 				}
+
+				// Handle remove empty groups from the state
+				if (isRowLeafOnlyGroups) {
+					shouldUpdateTheState = true;
+					delete rowSelectionState[groupRowData.id]; // delete newRowSelectionState[groupRowData.id];
+				}
 			});
+
+			// Handle remove empty groups from the state
+			if (shouldUpdateTheState) {
+				setRowSelectionState(rowSelectionState); // setRowSelectionState(newRowSelectionState);
+			}
 		} catch (error) {
 			console.error('Something went wrong with useMrtMemoModeRowsSelectionWorkaround(): ', error);
 		}

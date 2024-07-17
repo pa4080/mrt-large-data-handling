@@ -148,6 +148,7 @@ const Example = () => {
     isEnabled: memoMode === "rows" || memoMode === "table-body",
     gridId,
     rowSelectionState: { ...rowSelectionState }, // use the spread operator to trigger re-render
+    setRowSelectionState: setRowSelectionState,
     colorPathChecked: theme.palette.primary.main, // theme.palette.action.active,
     colorPathBlank: theme.palette.action.active, // theme.palette.action.disabled,
     rowsGroupedRowModel: table.getGroupedRowModel() as MRT_RowModel<TableData>
