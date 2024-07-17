@@ -2,7 +2,7 @@
 
 ## Task
 
-We needed a fast row selection feature for our table using MRT with 50-100 rows and 30+ columns, totaling up to 1500 cells. Enabling row selection in [MRT](https://www.material-react-table.com/) triggers a complete table re-render, which can take from one to three seconds or more, depending on the data. We know that [MUI](https://mui.com/material-ui/) isn't the most performant solution for such a large number of React components.
+We needed a fast row selection feature for our table using MRT with 50-100 rows and 30+ columns, totaling up to 1500 cells. Enabling row selection in [Material React Table](https://www.material-react-table.com/) triggers a complete table re-render, which can take from one to three seconds or more, depending on the data. We know that [MUI](https://mui.com/material-ui/) isn't the most performant solution for such a large number of React components.
 
 ## Solution
 
