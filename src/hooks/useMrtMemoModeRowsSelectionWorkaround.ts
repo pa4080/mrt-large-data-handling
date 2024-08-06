@@ -20,7 +20,7 @@ interface useMrtMemoModeRowsSelectionWorkaroundProps<
 > {
   gridId: string;
   rowSelectionState: MRT_RowSelectionState; // pass a copy to this prop { ...rowSelectionState }
-  setRowSelectionState: (newState: MRT_RowSelectionState) => void;
+  setRowSelectionState?: (newState: MRT_RowSelectionState) => void; // This could be dangerous and you may need to implement it in a different way
   isEnabled: boolean;
   rowsGroupedRowModel: MRT_RowModel<TableData>;
   selectedRowClassName?: string;
@@ -240,7 +240,8 @@ export function useMrtMemoModeRowsSelectionWorkaround<
       });
 
       // Handle remove empty groups from the state
-      if (shouldUpdateTheState) {
+      if (shouldUpdateTheState && setRowSelectionState) {
+        // This could be dangerous and you may need to implement it in a different way
         setRowSelectionState(rowSelectionState); // setRowSelectionState(newRowSelectionState);
       }
     } catch (error) {
